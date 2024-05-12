@@ -1,0 +1,17 @@
+\frametitle{引用计数细节}
+\label{frm:refcount}
+    \begin{minipage}{1\linewidth}
+\begin{lstlisting}[language=C++]
+auto fetch_add(::std::ptrdiff_t val = 1) noexcept
+{
+    return m_count.fetch_add(val,
+        ::std::memory_order_relaxed);
+}
+
+auto fetch_sub(::std::ptrdiff_t val = 1) noexcept
+{
+    return m_count.fetch_sub(val,
+        ::std::memory_order_acq_rel);
+}
+\end{lstlisting}
+    \end{minipage}\hspace{1cm}
